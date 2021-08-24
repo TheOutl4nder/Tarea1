@@ -39,11 +39,18 @@ class HomePage extends StatelessWidget {
                 Text("San Pedro Tlaquepaque", style: TextStyle(color: Colors.grey))
               ],),
               Column(children: [
-                IconButton(onPressed: (){
-                print('like');
-              }, icon: Icon(Icons.thumb_up, color: Colors.indigo,)),
-              Text('9999')
-              ],)
+                    Row(
+                      children: [
+                        IconButton(onPressed: (){
+                        print('like');
+                        }, icon: Icon(Icons.thumb_up, color: Colors.indigo,)),
+                        IconButton(onPressed: (){
+                        print('dislike');
+                        }, icon: Icon(Icons.thumb_down, color: Colors.indigo,)),
+                      ],
+                    ),
+                  Text('9999')],
+                )
             ],
           ),
           Container(
