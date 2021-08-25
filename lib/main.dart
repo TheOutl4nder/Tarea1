@@ -48,6 +48,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   int likes=69;
+  bool mailButton = false;
+  bool callButton = false;
+  bool routeButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -80,15 +83,27 @@ class _HomePage extends State<HomePage> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly ,children: [
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Icon(Icons.mail, size: 50,),
+              IconButton(onPressed: ()=>{
+                setState((){
+                  mailButton = !mailButton;
+                })
+              }, icon: Icon(Icons.mail, size: 50, color: mailButton? Colors.black: Colors.blue)),
               Text('Correo', style: TextStyle(fontWeight: FontWeight.bold))
             ],),
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Icon(Icons.call, size: 50,),
-              Text('Llamada', style: TextStyle(fontWeight: FontWeight.bold))
+              IconButton(onPressed: ()=>{
+                setState((){
+                  callButton = !callButton;
+                })
+              }, icon: Icon(Icons.call, size: 50, color: callButton? Colors.black: Colors.blue)),
+              Text('Llamar', style: TextStyle(fontWeight: FontWeight.bold))
             ],),
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Icon(Icons.directions, size: 50,),
+              IconButton(onPressed: ()=>{
+                setState((){
+                  routeButton = !routeButton;
+                })
+              }, icon: Icon(Icons.mail, size: 50, color: routeButton? Colors.black: Colors.blue)),
               Text('Ruta', style: TextStyle(fontWeight: FontWeight.bold))
             ],)
           ],),
