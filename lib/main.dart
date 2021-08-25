@@ -1,8 +1,38 @@
 import 'package:flutter/material.dart';
  
-void main() => runApp(MyAppITESO());
- 
+void main(){
+  runApp(MyAppITESO());
+}
+
+class Likes extends StatelessWidget{
+  final int likes;
+  final Function(int) likesChanged;
+
+  Likes(@required this.likes,
+  @required this.likesChanged);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+                    Row(
+                      children: [
+                        IconButton(onPressed: (){
+                        print('like');
+                        likesChanged(1);
+                        }, icon: Icon(Icons.thumb_up, color: Colors.indigo,)),
+                        IconButton(onPressed: (){
+                        print('dislike');
+                        likesChanged(-1);
+                        }, icon: Icon(Icons.thumb_down, color: Colors.indigo,)),
+                      ],
+                    ),
+                  Text('$likes')],
+                );
+  }
+}
+
 class MyAppITESO extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,10 +42,12 @@ class MyAppITESO extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({
-    Key? key,
-  }) : super(key: key);
+class HomePage extends StatefulWidget {
+  _HomePage createState() => _HomePage();
+}
+
+class _HomePage extends State<HomePage> {
+  int likes=69;
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +70,9 @@ class HomePage extends StatelessWidget {
                 Text("El ITESO, Universidad Jesuita de Guadalajara", style: TextStyle(fontWeight: FontWeight.bold),),
                 Text("San Pedro Tlaquepaque", style: TextStyle(color: Colors.grey))
               ],),
-              Column(children: [
-                    Row(
-                      children: [
-                        IconButton(onPressed: (){
-                        print('like');
-                        }, icon: Icon(Icons.thumb_up, color: Colors.indigo,)),
-                        IconButton(onPressed: (){
-                        print('dislike');
-                        }, icon: Icon(Icons.thumb_down, color: Colors.indigo,)),
-                      ],
-                    ),
-                  Text('9999')],
-                )
+              Likes(likes, (int val){
+                setState(() => likes += val);
+              })
             ],
           ),
           Container(
