@@ -12,7 +12,7 @@ class Likes extends StatelessWidget{
   @required this.likesChanged);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Column(children: [
                     Row(
                       children: [
@@ -51,7 +51,7 @@ class _HomePage extends State<HomePage> {
   bool mailButton = true;
   bool callButton = true;
   bool routeButton = true;
-
+    
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +84,7 @@ class _HomePage extends State<HomePage> {
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly ,children: [
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
               IconButton(onPressed: ()=>{
+                showSnackBar(context,'Enviando correo'),
                 setState((){
                   mailButton = !mailButton;
                 })
@@ -92,6 +93,7 @@ class _HomePage extends State<HomePage> {
             ],),
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
               IconButton(onPressed: ()=>{
+                showSnackBar(context,'Llamando'),
                 setState((){
                   callButton = !callButton;
                 })
@@ -100,11 +102,12 @@ class _HomePage extends State<HomePage> {
             ],),
             Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
               IconButton(onPressed: ()=>{
+                showSnackBar(context,'Mostrando ruta'),
                 setState((){
                   routeButton = !routeButton;
                 })
-              }, icon: Icon(Icons.mail, size: 50, color: routeButton? Colors.black: Colors.blue)),
-              Text('Ruta', style: TextStyle(fontWeight: FontWeight.bold))
+              }, icon: Icon(Icons.directions,size: 50, color: routeButton? Colors.black: Colors.blue),),
+              Text('Ruta', style: TextStyle(fontWeight: FontWeight.bold),)
             ],)
           ],),
           Container(
@@ -116,5 +119,20 @@ class _HomePage extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  void showSnackBar(BuildContext context, String text){
+    final snackBar = SnackBar(
+      content: Text(
+        text, 
+        style: TextStyle(fontSize: 16),
+      ),
+      action: SnackBarAction(label: 'Dismiss',
+      onPressed: ()=>{
+        print('pressed!')
+      }),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
