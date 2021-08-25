@@ -48,9 +48,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   int likes=69;
-  bool mailButton = false;
-  bool callButton = false;
-  bool routeButton = false;
+  bool mailButton = true;
+  bool callButton = true;
+  bool routeButton = true;
 
   @override
   Widget build(BuildContext context) {
