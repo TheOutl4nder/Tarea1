@@ -61,7 +61,7 @@ class _HomePage extends State<HomePage> {
       body: ListView(
         children: [
           //Imagen
-          Image.network('https://cruce.iteso.mx/wp-content/uploads/sites/123/2018/04/Portada-2-e1525031912445.jpg'),
+          Image.network('https://cruce.iteso.mx/wp-content/uploads/sites/123/2018/04/Portada-2-e1525031912445.jpg',scale: 1.0,),
           Container(
             height: 20,
           ),
